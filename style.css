@@ -1,0 +1,191 @@
+html{
+  height: 100%;
+}
+* {
+  box-sizing: border-box;/*indique au navigateur de prendre en compte la bordure et le remplissage dans la valeur définie pour la largeur et la hauteur. */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  background: linear-gradient(to bottom, #f5f5f5, #fff);/* direction du dégradé linéaire */
+  height: 100%;
+  font-family: localRobotoFont, Arial, sans-serif;
+}
+
+.nav {
+  display: flex;/* je definis un container flex,*/
+  width: 100%;
+  background-color: #A89E96;
+  border-bottom: 2px solid #63615E;
+  box-sizing: border-box;/* */
+  padding: 10px 20px;
+  margin-bottom: 40px;
+}
+
+.school {
+  text-decoration: none;
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  flex-grow: 1;/* je définis la possibilité pour l'élément .school de grandir */
+  flex-shrink: 0; /* je définis la possibilité pour l'élément .school flex de rétrécir si nécessaire. */
+  flex-basis: 200px;/* je définis la taille par défaut de l'élément .school avant que l'espace restant soit réparti */
+}
+
+.nav-buttons {
+  text-align: right;/* alignement du texte à droite*/
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  display: inline-block;
+  padding: 5px;
+  margin: 0 5px;
+  /* Les nouvelles propriétés CSS3 mettent du temps à être normalisées, c'est donc pour cela que le W3C recommande aux navigateurs web d'utiliser des propriétés "propriétaires" leur permettant d'ajouter les nouvelles fonctionnalités du CSS3 mais aussi de faire des essais en situation réelle avant l'implémentation des propriétés finales.Elles se distinguent par un préfixe propre à chaque navigateur */
+  /*je finis par la propriété qui devra les remplacer un jour */
+  transition: color 2s ease-out
+}
+.nav-buttons a:hover {
+  color: red;
+}
+.body {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.left-column,
+.center-column,
+.right-column {
+  /* La propriété flex  est en fait une super-propriété qui combine flex-grow ,flex-shrink et  flex-basis */
+  flex: 1 1 33%;
+  padding: 0 20px;
+}
+
+.center-column {
+  flex-basis: 50%;
+  flex-shrink: 0;
+}
+
+.footer {
+  display: flex;
+  background-color: #292522;
+  justify-content: space-around;
+  color: #ffff;
+  padding: 50px 0;
+}
+
+.footer div {
+  flex-basis: 20%;
+  border: 1px solid red;
+}
+
+.left-column a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  color: #000;
+}
+
+.adv {
+  display: block;
+  overflow: auto;
+  height: 300px;
+  background-color: #A6A3A2;
+  border: 1px solid #aaa;
+  margin-bottom: 10px;
+  transition: background-color 5s ease
+  }
+.adv:hover{
+  background-color: #F7470C;
+}
+
+.video-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+ /*----------------------------*\
+           Media Querys
+ \*----------------------------*/
+
+/* Sur les écrans, quand la largeur de la fenêtre fait au maximum 768px */
+@media (max-width: 768px) {
+  .adv {
+    /* je masque l'élément .adv pour les écrans de largeur inferieur à 768px */
+    display: none;
+  }
+
+  .body,
+  .footer {
+    /* J'autorise mes éléments à aller à la ligne */
+    flex-wrap: wrap;
+  }
+
+  .footer div {
+    /*je peux remplacer les trois propiétés suivantes : flex-grow ,flex-shrink et flex-basis par la proprieté flex, qui les combinent*/
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    border: 1px solid white;
+    margin-bottom: 10px;
+  }
+
+  .left-column,
+  .center-column,
+  .right-column {
+    flex-shrink: 0;
+    flex-basis: 100%;
+
+  }
+
+  .center-column {
+    /* la propriété order me permet de controler l'ordre dans lequel les éléments apparaissent dans le conteneur*/
+    order: 1;
+  }
+  .left-column {
+    order: 2;
+  }
+  .right-column {
+    order: 3;
+  }
+}
+/* Sur les écrans, quand la largeur de la fenêtre fait au maximum 425px */
+@media (max-width: 425px) {
+  .adv {
+  display: block; /*  */
+  }
+
+  .left-column,
+  .center-column,
+  .right-column {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+  }
+
+  .footer div {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 0;
+    text-align: center;
+  }
+}
+
